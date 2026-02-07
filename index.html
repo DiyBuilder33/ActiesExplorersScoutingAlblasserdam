@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Klusjesdag – Scouting Alblasserdam</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -29,11 +30,11 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             background: white;
             padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 14px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.1);
         }
 
         h1, h2 {
@@ -42,15 +43,16 @@
         }
 
         p {
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 18px;
+            line-height: 1.7;
         }
 
         .btn {
             display: inline-block;
+            margin-top: 20px;
             background: #1f7a4d;
             color: white;
-            padding: 15px 30px;
+            padding: 15px 35px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
@@ -65,6 +67,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
+            margin-top: 20px;
         }
 
         .option {
@@ -112,24 +115,33 @@
 </head>
 <body>
 
-<!-- PAGINA 1 -->
-<section id="home">
+<!-- LANDING / HOOFDPAGINA -->
+<section id="landing">
     <div class="container">
-        <h1>Klusjesdag – Scouting Alblasserdam</h1>
+        <h1>Klusjesdag <span id="year"></span> – Scouting Alblasserdam</h1>
+
         <p>
-            Wij zijn de <strong>Explorers van Scouting Alblasserdam</strong> en wij organiseren een klusjesdag
-            om geld op te halen voor ons <strong>zomerkamp naar Denemarken</strong>.
-        </p>
-        <p>
-            Heeft u een klusje waar u hulp bij kunt gebruiken?  
-            Wij komen graag helpen!
+            Wij zijn de <strong>Explorers van Scouting Alblasserdam</strong> en organiseren dit jaar
+            opnieuw een klusjesdag.
         </p>
 
-        <a href="#type" class="btn">Meld je klusje aan</a>
+        <p>
+            Door klusjes te doen bij mensen uit Alblasserdam en omgeving
+            halen wij geld op voor ons <strong>zomerkamp naar Denemarken</strong>.
+            Zo leren wij samenwerken, verantwoordelijkheid nemen én sparen we samen
+            voor een onvergetelijk kamp.
+        </p>
+
+        <p>
+            Heeft u een klus waar u hulp bij kunt gebruiken?
+            Dan kunt u hieronder eenvoudig een klus aanmelden.
+        </p>
+
+        <a href="#type" class="btn">Start met aanmelden</a>
     </div>
 </section>
 
-<!-- PAGINA 2 -->
+<!-- STAP 1 -->
 <section id="type">
     <div class="container">
         <h2>Wat voor klus is het?</h2>
@@ -141,52 +153,49 @@
             <div class="option">🔧 Anders</div>
         </div>
 
-        <br>
-        <a href="#details" class="btn">Volgende</a>
+        <a href="#details" class="btn">Volgende stap</a>
     </div>
 </section>
 
-<!-- PAGINA 3 -->
+<!-- STAP 2 -->
 <section id="details">
     <div class="container">
         <h2>Details van de klus</h2>
 
-        <form>
-            <textarea placeholder="Omschrijf de klus" required></textarea>
+        <textarea placeholder="Omschrijf de klus" required></textarea>
 
-            <label>Datum</label>
-            <input type="date" required>
+        <label>Datum</label>
+        <input type="date" required>
 
-            <label>Tijd</label>
-            <select required>
-                <option value="">Kies een tijdsperiode</option>
-                <option>Ochtend</option>
-                <option>Middag</option>
-                <option>Hele dag</option>
-            </select>
+        <label>Tijdsperiode</label>
+        <select required>
+            <option value="">Kies een optie</option>
+            <option>Ochtend</option>
+            <option>Middag</option>
+            <option>Hele dag</option>
+        </select>
 
-            <label>Bijdrage (€)</label>
-            <input type="number" placeholder="Bijvoorbeeld 20" required>
+        <label>Bijdrage (€)</label>
+        <input type="number" placeholder="Bijvoorbeeld 20" required>
 
-            <p class="small">
-                Betaling kan na afloop via QR-code of contant.
-            </p>
+        <p class="small">
+            Betaling vindt plaats na afloop via QR-code of contant.
+        </p>
 
-            <a href="#contact" class="btn">Volgende</a>
-        </form>
+        <a href="#contact" class="btn">Verder</a>
     </div>
 </section>
 
-<!-- PAGINA 4 -->
+<!-- STAP 3 -->
 <section id="contact">
     <div class="container">
         <h2>Uw gegevens</h2>
 
         <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" onsubmit="return validateContact()">
-            <input type="text" name="naam" id="naam" placeholder="Naam *" required>
+            <input type="text" name="naam" placeholder="Naam *" required>
 
-            <input type="email" name="email" id="email" placeholder="E-mailadres">
-            <input type="tel" name="telefoon" id="telefoon" placeholder="Telefoonnummer">
+            <input type="email" id="email" name="email" placeholder="E-mailadres">
+            <input type="tel" id="telefoon" name="telefoon" placeholder="Telefoonnummer">
 
             <p class="small">
                 Minimaal één contactgegeven (e-mail of telefoon) is verplicht.
@@ -198,11 +207,14 @@
 </section>
 
 <script>
+    // automatisch jaartal
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     function validateContact() {
         const email = document.getElementById("email").value;
         const tel = document.getElementById("telefoon").value;
 
-        if (email === "" && tel === "") {
+        if (!email && !tel) {
             alert("Vul minimaal een e-mailadres of telefoonnummer in.");
             return false;
         }
