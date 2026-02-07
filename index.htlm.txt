@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klusjesdag | Explorers Scouting Alblasserdam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --scout-green: #1a5e1a;
+            --scout-orange: #e67e22;
+        }
+        .bg-scout-green { background-color: var(--scout-green); }
+        .text-scout-green { color: var(--scout-green); }
+        .bg-scout-orange { background-color: var(--scout-orange); }
+        .border-scout-green { border-color: var(--scout-green); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Logo -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <img src="https://www.scouting-alblasserdam.nl" alt="Scouting Alblasserdam Logo" class="h-20 mb-4 md:mb-0">
+            <div class="text-center md:text-right">
+                <h2 class="text-xl font-bold text-scout-green">Explorers Scouting Alblasserdam</h2>
+                <p class="text-sm text-gray-600">Steun ons op weg naar zomerkamp!</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-scout-green text-white py-16 px-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-4">KLUSJESDAG 🛠️</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                Heeft u een klusje dat al te lang blijft liggen? Wij stropen onze mouwen op! 
+                Met uw bijdrage maken wij ons legendarische zomerkamp mogelijk.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#aanmelden" class="bg-scout-orange hover:scale-105 transition-transform text-white font-bold py-3 px-8 rounded-full shadow-lg">Klusje Aanmelden</a>
+                <p class="text-white mt-4 font-semibold italic">Betalen kan gewoon contant of via een QR-code na afloop van de klus!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulier Sectie -->
+    <section id="aanmelden" class="py-16 px-4">
+        <div class="container mx-auto max-w-3xl bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="bg-gray-100 p-6 border-b">
+                <h2 class="text-2xl font-bold text-scout-green">Meld uw klus aan</h2>
+                <p class="text-gray-600">Vul het formulier in en we nemen zo snel mogelijk contact met u op.</p>
+            </div>
+            
+            <!-- FORMULIER START -->
+            <form action="https://formspree.io/f/mzdabryo" method="POST" class="p-8 space-y-6">
+                
+                <!-- Categorie -->
+                <div>
+                    <label class="block font-bold mb-2">Wat voor soort klus is het?</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <label class="cursor-pointer border rounded-lg p-3 text-center hover:bg-green-50 transition border-gray-200">
+                            <input type="radio" name="categorie" value="Tuinieren" class="hidden peer" required>
+                            <span class="peer-checked:text-scout-green peer-checked:font-bold">🌱 Tuinieren</span>
+                        </label>
+                        <label class="cursor-pointer border rounded-lg p-3 text-center hover:bg-green-50 transition border-gray-200">
+                            <input type="radio" name="categorie" value="Boodschappen" class="hidden peer">
+                            <span class="peer-checked:text-scout-green peer-checked:font-bold">🛒 Boodschappen</span>
+                        </label>
+                        <label class="cursor-pointer border rounded-lg p-3 text-center hover:bg-green-50 transition border-gray-200">
+                            <input type="radio" name="categorie" value="Schoonmaak" class="hidden peer">
+                            <span class="peer-checked:text-scout-green peer-checked:font-bold">🧹 Schoonmaak</span>
+                        </label>
+                        <label class="cursor-pointer border rounded-lg p-3 text-center hover:bg-green-50 transition border-gray-200">
+                            <input type="radio" name="categorie" value="Anders" class="hidden peer">
+                            <span class="peer-checked:text-scout-green peer-checked:font-bold">❓ Anders</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Omschrijving -->
+                <div>
+                    <label class="block font-bold mb-2">Beschrijf de klus specifiek:</label>
+                    <textarea name="omschrijving" rows="4" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Bijv: Het onkruid tussen de tegels weghalen in de achtertuin..."></textarea>
+                </div>
+
+                <!-- Datum & Tijd -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block font-bold mb-2">Voorkeursdatum:</label>
+                        <input type="date" name="datum" class="w-full border border-gray-300 rounded-lg p-3" required>
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-2">Tijdsperiode:</label>
+                        <select name="tijd" class="w-full border border-gray-300 rounded-lg p-3">
+                            <option>Ochtend (09:00 - 12:00)</option>
+                            <option>Middag (13:00 - 17:00)</option>
+                            <option>Hele dag</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Donatie bedrag -->
+                <div>
+                    <label class="block font-bold mb-2">Wat is uw richtprijs voor deze klus? (Te betalen na afloop)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-3 text-gray-500">€</span>
+                        <input type="number" name="bedrag" class="w-full border border-gray-300 rounded-lg p-3 pl-8" placeholder="Bedrag naar keuze" required>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Contactinformatie -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block font-bold mb-2">Uw Naam:</label>
+                        <input type="text" name="naam" class="w-full border border-gray-300 rounded-lg p-3" required>
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-2">Telefoonnummer:</label>
+                        <input type="tel" name="telefoon" class="w-full border border-gray-300 rounded-lg p-3" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-scout-green text-white font-bold py-4 rounded-lg hover:bg-green-800 transition shadow-lg">Klusaanvraag Versturen</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10 text-center">
+        <p class="mb-4">Bedankt voor uw steun aan de Explorers van Scouting Alblasserdam!</p>
+        <p class="text-sm text-gray-400">&copy; 2024 Scouting Alblasserdam | Alle opbrengsten gaan naar het Zomerkamp.</p>
+    </footer>
+
+</body>
+</html>
