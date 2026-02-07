@@ -3,205 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klusjesdag Explorers - Scouting Alblasserdam</title>
+    <title>Klusjesdag – Scouting Alblasserdam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        :root {
-            --scout-green: #077840;
-            --scout-yellow: #F0DB3C;
-            --dark-grey: #2c3e50;
-            --light-grey: #f8f9fa;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        body, html {
-            margin: 0; padding: 0; 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
-            background-color: var(--light-grey);
+        body {
             scroll-behavior: smooth;
-        }
-
-        #slider {
-            display: flex; 
-            width: 400vw; 
-            height: 100vh;
-            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+            background: #f5f7fa;
+            color: #333;
         }
 
         section {
-            width: 100vw; 
-            height: 100vh;
-            display: flex; 
-            align-items: center; 
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
             justify-content: center;
-            box-sizing: border-box;
+            align-items: center;
         }
 
-        /* Hero / Hoofdpagina styling */
-        .hero-card {
+        .container {
+            max-width: 800px;
             background: white;
             padding: 50px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            max-width: 800px;
-            width: 90%;
-            text-align: center;
-            border-top: 8px solid var(--scout-green);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .hero-card h1 { 
-            color: var(--scout-green); 
-            font-size: 2.8rem; 
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        h1, h2 {
+            color: #1f7a4d;
+            margin-bottom: 20px;
         }
 
-        .highlight-box {
-            background: #eef7f2;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 25px 0;
-            border-left: 5px solid var(--scout-yellow);
-            text-align: left;
-        }
-
-        /* Formulier kaarten */
-        .card {
-            background: white; 
-            padding: 40px; 
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
-            max-width: 500px; 
-            width: 90%;
-            text-align: center;
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .btn {
-            background-color: var(--scout-green); 
-            color: white; 
-            border: none;
-            padding: 18px 40px; 
-            font-size: 20px; 
-            border-radius: 50px; 
+            display: inline-block;
+            background: #1f7a4d;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #16603c;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .option {
+            border: 2px solid #1f7a4d;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease; 
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(7, 120, 64, 0.3);
+            transition: 0.3s;
         }
 
-        .btn:hover { 
-            background-color: #055a30; 
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(7, 120, 64, 0.4);
+        .option:hover {
+            background: #1f7a4d;
+            color: white;
         }
 
-        .form-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; font-weight: 600; margin-bottom: 5px; color: var(--dark-grey); }
-        
-        input, select, textarea {
-            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;
+        form input, form textarea, form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
         }
 
-        .logo { max-width: 180px; margin-bottom: 10px; }
-        .error-msg { color: #e74c3c; font-weight: bold; display: none; margin-top: 10px; }
+        form button {
+            width: 100%;
+            padding: 15px;
+            background: #1f7a4d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #16603c;
+        }
+
+        .small {
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
 
-<form id="klusForm" action="https://formspree.io" method="POST">
-    <div id="slider">
-        
-        <!-- STARTPAGINA -->
-        <section>
-            <div class="hero-card">
-                <img src="https://www.scouting-alblasserdam.nl" alt="Scouting Alblasserdam" class="logo">
-                <h1>Klusjesdag 2024</h1>
-                <p style="font-size: 1.2rem; color: #555;">De Explorers van Scouting Alblasserdam steken de handen uit de mouwen!</p>
-                
-                <div class="highlight-box">
-                    <strong>Waarom doen we dit?</strong><br>
-                    Deze zomer hebben we een groot doel: een onvergetelijk zomerkamp naar <strong>Denemarken</strong>. Om de reis en activiteiten te kunnen betalen, zamelen we geld in door klusjes te doen bij u in de buurt. Of het nu gaat om tuinieren, schoonmaken of sjouwen: wij staan voor u klaar!
-                </div>
+<!-- PAGINA 1 -->
+<section id="home">
+    <div class="container">
+        <h1>Klusjesdag – Scouting Alblasserdam</h1>
+        <p>
+            Wij zijn de <strong>Explorers van Scouting Alblasserdam</strong> en wij organiseren een klusjesdag
+            om geld op te halen voor ons <strong>zomerkamp naar Denemarken</strong>.
+        </p>
+        <p>
+            Heeft u een klusje waar u hulp bij kunt gebruiken?  
+            Wij komen graag helpen!
+        </p>
 
-                <button type="button" class="btn" onclick="moveTo(1)">Meld direct een klusje aan</button>
-            </div>
-        </section>
-
-        <!-- STAP 2 -->
-        <section>
-            <div class="card">
-                <h2>Wat kunnen we doen?</h2>
-                <div class="form-group">
-                    <select name="categorie" required>
-                        <option value="" disabled selected>Kies een type klus...</option>
-                        <option value="tuin">🌿 Tuinieren</option>
-                        <option value="schoonmaak">🧹 Schoonmaken</option>
-                        <option value="boodschappen">🛒 Boodschappen / Sjouwen</option>
-                        <option value="anders">🛠️ Iets anders...</option>
-                    </select>
-                </div>
-                <button type="button" class="btn" onclick="moveTo(2)">Volgende stap</button>
-            </div>
-        </section>
-
-        <!-- STAP 3 -->
-        <section>
-            <div class="card">
-                <h2>Details & Tijd</h2>
-                <div class="form-group">
-                    <textarea name="beschrijving" rows="3" placeholder="Wat moet er precies gebeuren?" required></textarea>
-                </div>
-                <div style="display: flex; gap: 10px;">
-                    <input type="date" name="datum" required>
-                    <select name="tijd">
-                        <option value="ochtend">Ochtend</option>
-                        <option value="middag">Middag</option>
-                        <option value="hele_dag">Hele dag</option>
-                    </select>
-                </div>
-                <div class="form-group" style="margin-top: 15px;">
-                    <label>Vrijwillige bijdrage (€):</label>
-                    <input type="number" name="bijdrage" placeholder="Bijv. 15" min="1">
-                </div>
-                <button type="button" class="btn" onclick="moveTo(3)">Laatste stap</button>
-            </div>
-        </section>
-
-        <!-- STAP 4 -->
-        <section>
-            <div class="card">
-                <h2>Uw gegevens</h2>
-                <div class="form-group">
-                    <input type="text" name="naam" id="naam" placeholder="Uw naam" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" id="email" placeholder="E-mailadres">
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="telefoon" id="tel" placeholder="Telefoonnummer">
-                </div>
-                <p id="contactError" class="error-msg">Vul a.u.b. e-mail of telefoonnummer in.</p>
-                <button type="submit" class="btn">Verstuur aanvraag</button>
-            </div>
-        </section>
-
+        <a href="#type" class="btn">Meld je klusje aan</a>
     </div>
-</form>
+</section>
+
+<!-- PAGINA 2 -->
+<section id="type">
+    <div class="container">
+        <h2>Wat voor klus is het?</h2>
+
+        <div class="options">
+            <div class="option">🌱 Tuinieren</div>
+            <div class="option">🧹 Schoonmaken</div>
+            <div class="option">🛒 Boodschappen doen</div>
+            <div class="option">🔧 Anders</div>
+        </div>
+
+        <br>
+        <a href="#details" class="btn">Volgende</a>
+    </div>
+</section>
+
+<!-- PAGINA 3 -->
+<section id="details">
+    <div class="container">
+        <h2>Details van de klus</h2>
+
+        <form>
+            <textarea placeholder="Omschrijf de klus" required></textarea>
+
+            <label>Datum</label>
+            <input type="date" required>
+
+            <label>Tijd</label>
+            <select required>
+                <option value="">Kies een tijdsperiode</option>
+                <option>Ochtend</option>
+                <option>Middag</option>
+                <option>Hele dag</option>
+            </select>
+
+            <label>Bijdrage (€)</label>
+            <input type="number" placeholder="Bijvoorbeeld 20" required>
+
+            <p class="small">
+                Betaling kan na afloop via QR-code of contant.
+            </p>
+
+            <a href="#contact" class="btn">Volgende</a>
+        </form>
+    </div>
+</section>
+
+<!-- PAGINA 4 -->
+<section id="contact">
+    <div class="container">
+        <h2>Uw gegevens</h2>
+
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" onsubmit="return validateContact()">
+            <input type="text" name="naam" id="naam" placeholder="Naam *" required>
+
+            <input type="email" name="email" id="email" placeholder="E-mailadres">
+            <input type="tel" name="telefoon" id="telefoon" placeholder="Telefoonnummer">
+
+            <p class="small">
+                Minimaal één contactgegeven (e-mail of telefoon) is verplicht.
+            </p>
+
+            <button type="submit">Klus aanmelden</button>
+        </form>
+    </div>
+</section>
 
 <script>
-    function moveTo(pageIndex) {
-        document.getElementById('slider').style.transform = `translateX(-${pageIndex * 100}vw)`;
-    }
+    function validateContact() {
+        const email = document.getElementById("email").value;
+        const tel = document.getElementById("telefoon").value;
 
-    const form = document.getElementById('klusForm');
-    form.addEventListener('submit', function (e) {
-        const email = document.getElementById('email').value;
-        const tel = document.getElementById('tel').value;
-        if (!email && !tel) {
-            e.preventDefault();
-            document.getElementById('contactError').style.display = 'block';
+        if (email === "" && tel === "") {
+            alert("Vul minimaal een e-mailadres of telefoonnummer in.");
+            return false;
         }
-    });
+        return true;
+    }
 </script>
 
 </body>
