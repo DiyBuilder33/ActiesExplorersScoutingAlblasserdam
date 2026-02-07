@@ -8,24 +8,23 @@
         :root {
             --scout-green: #077840;
             --scout-yellow: #F0DB3C;
-            --dark-grey: #333;
-            --light-grey: #f4f4f4;
+            --dark-grey: #2c3e50;
+            --light-grey: #f8f9fa;
         }
 
         body, html {
             margin: 0; padding: 0; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden; /* Voorkom horizontaal scrollen met de muis */
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
             background-color: var(--light-grey);
+            scroll-behavior: smooth;
         }
 
-        /* De slider container */
         #slider {
             display: flex; 
             width: 400vw; 
             height: 100vh;
-            transform: translateX(0); /* Startpositie expliciet op 0 */
-            transition: transform 0.7s cubic-bezier(0.45, 0, 0.55, 1);
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
         section {
@@ -34,63 +33,77 @@
             display: flex; 
             align-items: center; 
             justify-content: center;
-            padding: 20px; 
             box-sizing: border-box;
         }
 
+        /* Hero / Hoofdpagina styling */
+        .hero-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            border-top: 8px solid var(--scout-green);
+        }
+
+        .hero-card h1 { 
+            color: var(--scout-green); 
+            font-size: 2.8rem; 
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: #eef7f2;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid var(--scout-yellow);
+            text-align: left;
+        }
+
+        /* Formulier kaarten */
         .card {
             background: white; 
             padding: 40px; 
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            max-width: 550px; 
-            width: 100%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+            max-width: 500px; 
+            width: 90%;
             text-align: center;
         }
-
-        h1 { color: var(--scout-green); margin-top: 0; font-size: 2rem; }
-        p { color: var(--dark-grey); line-height: 1.6; font-size: 1.1rem; }
 
         .btn {
             background-color: var(--scout-green); 
             color: white; 
             border: none;
-            padding: 16px 32px; 
-            font-size: 18px; 
-            border-radius: 8px; 
+            padding: 18px 40px; 
+            font-size: 20px; 
+            border-radius: 50px; 
             cursor: pointer;
-            margin-top: 20px; 
-            transition: 0.3s; 
+            transition: all 0.3s ease; 
             font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(7, 120, 64, 0.3);
         }
 
-        .btn:hover { background-color: #055a30; transform: translateY(-2px); }
+        .btn:hover { 
+            background-color: #055a30; 
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(7, 120, 64, 0.4);
+        }
 
-        .form-group { text-align: left; margin-bottom: 20px; }
-        label { display: block; font-weight: bold; margin-bottom: 8px; color: var(--dark-grey); }
+        .form-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; color: var(--dark-grey); }
         
         input, select, textarea {
-            width: 100%; 
-            padding: 14px; 
-            border: 2px solid #eee; 
-            border-radius: 8px; 
-            box-sizing: border-box;
-            font-size: 16px;
-            outline: none;
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;
         }
 
-        input:focus, textarea:focus { border-color: var(--scout-green); }
-
-        .error-msg { 
-            color: #d9534f; 
-            font-size: 0.95em; 
-            display: none; 
-            margin-top: 10px; 
-            font-weight: bold;
-        }
-
-        .logo { max-width: 160px; margin-bottom: 20px; }
+        .logo { max-width: 180px; margin-bottom: 10px; }
+        .error-msg { color: #e74c3c; font-weight: bold; display: none; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -98,27 +111,31 @@
 <form id="klusForm" action="https://formspree.io" method="POST">
     <div id="slider">
         
-        <!-- STAP 1: Welkomstpagina -->
+        <!-- STARTPAGINA -->
         <section>
-            <div class="card">
-                <img src="https://www.scouting-alblasserdam.nl" alt="Logo" class="logo">
+            <div class="hero-card">
+                <img src="https://www.scouting-alblasserdam.nl" alt="Scouting Alblasserdam" class="logo">
                 <h1>Klusjesdag 2024</h1>
-                <p>Welkom! Wij zijn de <strong>Explorers van Scouting Alblasserdam</strong>.</p>
-                <p>Om ons zomerkamp naar <strong>Denemarken</strong> te financieren, steken wij graag de handen uit de mouwen. Heeft u een klusje? Wij regelen het!</p>
-                <button type="button" class="btn" onclick="moveTo(1)">Meld je klusje aan</button>
+                <p style="font-size: 1.2rem; color: #555;">De Explorers van Scouting Alblasserdam steken de handen uit de mouwen!</p>
+                
+                <div class="highlight-box">
+                    <strong>Waarom doen we dit?</strong><br>
+                    Deze zomer hebben we een groot doel: een onvergetelijk zomerkamp naar <strong>Denemarken</strong>. Om de reis en activiteiten te kunnen betalen, zamelen we geld in door klusjes te doen bij u in de buurt. Of het nu gaat om tuinieren, schoonmaken of sjouwen: wij staan voor u klaar!
+                </div>
+
+                <button type="button" class="btn" onclick="moveTo(1)">Meld direct een klusje aan</button>
             </div>
         </section>
 
-        <!-- STAP 2: Categorie -->
+        <!-- STAP 2 -->
         <section>
             <div class="card">
-                <h1>Wat voor klus?</h1>
-                <p>Kies een categorie zodat wij ons goed kunnen voorbereiden:</p>
+                <h2>Wat kunnen we doen?</h2>
                 <div class="form-group">
-                    <select name="soort_klus" required>
-                        <option value="" disabled selected>Maak een keuze...</option>
-                        <option value="tuinieren">🌿 Tuinieren (harken, snoeien, etc.)</option>
-                        <option value="schoonmaken">🧹 Schoonmaken (auto, ramen, etc.)</option>
+                    <select name="categorie" required>
+                        <option value="" disabled selected>Kies een type klus...</option>
+                        <option value="tuin">🌿 Tuinieren</option>
+                        <option value="schoonmaak">🧹 Schoonmaken</option>
                         <option value="boodschappen">🛒 Boodschappen / Sjouwen</option>
                         <option value="anders">🛠️ Iets anders...</option>
                     </select>
@@ -127,56 +144,44 @@
             </div>
         </section>
 
-        <!-- STAP 3: Omschrijving & Tijd -->
+        <!-- STAP 3 -->
         <section>
             <div class="card">
-                <h1>Wanneer & Wat</h1>
+                <h2>Details & Tijd</h2>
                 <div class="form-group">
-                    <label>Korte omschrijving:</label>
-                    <textarea name="omschrijving" rows="3" placeholder="Wat moet er precies gebeuren?" required></textarea>
+                    <textarea name="beschrijving" rows="3" placeholder="Wat moet er precies gebeuren?" required></textarea>
                 </div>
-                <div style="display: flex; gap: 15px;">
-                    <div class="form-group" style="flex: 1;">
-                        <label>Datum:</label>
-                        <input type="date" name="datum" required>
-                    </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label>Dagdeel:</label>
-                        <select name="tijdsperiode">
-                            <option value="ochtend">Ochtend</option>
-                            <option value="middag">Middag</option>
-                            <option value="hele_dag">Hele dag</option>
-                        </select>
-                    </div>
+                <div style="display: flex; gap: 10px;">
+                    <input type="date" name="datum" required>
+                    <select name="tijd">
+                        <option value="ochtend">Ochtend</option>
+                        <option value="middag">Middag</option>
+                        <option value="hele_dag">Hele dag</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label>Verwachte donatie (€):</label>
-                    <input type="number" name="donatie" placeholder="Bijv: 15" min="1">
-                    <small>Betaling via QR of contant na afloop.</small>
+                <div class="form-group" style="margin-top: 15px;">
+                    <label>Vrijwillige bijdrage (€):</label>
+                    <input type="number" name="bijdrage" placeholder="Bijv. 15" min="1">
                 </div>
                 <button type="button" class="btn" onclick="moveTo(3)">Laatste stap</button>
             </div>
         </section>
 
-        <!-- STAP 4: Contact & Verzenden -->
+        <!-- STAP 4 -->
         <section>
             <div class="card">
-                <h1>Uw Gegevens</h1>
-                <p>Vul uw contactgegevens in zodat we de afspraak kunnen bevestigen.</p>
+                <h2>Uw gegevens</h2>
                 <div class="form-group">
-                    <label>Naam (verplicht):</label>
-                    <input type="text" name="naam" id="naam" required>
+                    <input type="text" name="naam" id="naam" placeholder="Uw naam" required>
                 </div>
                 <div class="form-group">
-                    <label>E-mailadres:</label>
-                    <input type="email" name="_replyto" id="email" placeholder="uw@email.nl">
+                    <input type="email" name="email" id="email" placeholder="E-mailadres">
                 </div>
                 <div class="form-group">
-                    <label>Telefoonnummer:</label>
-                    <input type="tel" name="telefoon" id="tel" placeholder="06 12345678">
+                    <input type="tel" name="telefoon" id="tel" placeholder="Telefoonnummer">
                 </div>
-                <p id="contactError" class="error-msg">⚠️ Vul minimaal een e-mail óf telefoonnummer in.</p>
-                <button type="submit" class="btn">Aanvraag versturen</button>
+                <p id="contactError" class="error-msg">Vul a.u.b. e-mail of telefoonnummer in.</p>
+                <button type="submit" class="btn">Verstuur aanvraag</button>
             </div>
         </section>
 
@@ -184,31 +189,20 @@
 </form>
 
 <script>
-    // Zorg dat we ALTIJD op de eerste pagina beginnen bij verversen
-    window.onload = function() {
-        moveTo(0);
-    };
-
     function moveTo(pageIndex) {
-        const offset = pageIndex * 100;
-        document.getElementById('slider').style.transform = `translateX(-${offset}vw)`;
+        document.getElementById('slider').style.transform = `translateX(-${pageIndex * 100}vw)`;
     }
 
     const form = document.getElementById('klusForm');
     form.addEventListener('submit', function (e) {
         const email = document.getElementById('email').value;
         const tel = document.getElementById('tel').value;
-        const error = document.getElementById('contactError');
-
         if (!email && !tel) {
             e.preventDefault();
-            error.style.display = 'block';
-        } else {
-            error.style.display = 'none';
+            document.getElementById('contactError').style.display = 'block';
         }
     });
 </script>
 
 </body>
 </html>
-
